@@ -1,0 +1,663 @@
+{
+  "generatedAt": "2026-05-21T21:07:33.919Z",
+  "timeWindowDays": 90,
+  "engineers": [
+    {
+      "handle": "marcushyett-ph",
+      "totalScore": 82,
+      "deliveryScore": 88,
+      "productScore": 75,
+      "leverageScore": 70,
+      "qualityScore": 80,
+      "confidence": "high",
+      "primaryImpactType": "Delivery",
+      "summary": "marcushyett-ph shipped 12 merged PRs across product and frontend areas. Key contributions include retention CSV export (#24891), session recording filters (#24720), and insights query optimization (#24650). Strong delivery with cross-cutting product impact.",
+      "caveats": [
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24891",
+          "number": 24891,
+          "url": "https://github.com/PostHog/posthog/pull/24891",
+          "title": "feat(insights): add retention table CSV export",
+          "author": "marcushyett-ph",
+          "date": "2026-05-19T15:30:00Z",
+          "type": "Product Feature",
+          "repoArea": "Product",
+          "deliveryScore": 85,
+          "productScore": 80,
+          "leverageScore": 30,
+          "qualityScore": 70,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 2 issue(s)",
+            "On milestone 0.62",
+            "Meaningful scope: 8 files",
+            "342 lines changed",
+            "Product work type: Product Feature",
+            "Product area: Product",
+            "Touches shared library/platform code",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24720",
+          "number": 24720,
+          "url": "https://github.com/PostHog/posthog/pull/24720",
+          "title": "feat(recordings): add property filters to session list",
+          "author": "marcushyett-ph",
+          "date": "2026-05-10T09:15:00Z",
+          "type": "Product Feature",
+          "repoArea": "Frontend",
+          "deliveryScore": 78,
+          "productScore": 85,
+          "leverageScore": 20,
+          "qualityScore": 75,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 6 files",
+            "215 lines changed",
+            "Product work type: Product Feature",
+            "Frontend area",
+            "2 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24650",
+          "number": 24650,
+          "url": "https://github.com/PostHog/posthog/pull/24650",
+          "title": "perf(insights): optimize trend query for large date ranges",
+          "author": "marcushyett-ph",
+          "date": "2026-05-02T14:00:00Z",
+          "type": "Performance",
+          "repoArea": "Backend",
+          "deliveryScore": 72,
+          "productScore": 40,
+          "leverageScore": 65,
+          "qualityScore": 80,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 5 files",
+            "180 lines changed",
+            "Performance optimization",
+            "Backend area",
+            "Touches shared query engine",
+            "4 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24580",
+          "number": 24580,
+          "url": "https://github.com/PostHog/posthog/pull/24580",
+          "title": "fix(insights): correct timezone handling in retention",
+          "author": "marcushyett-ph",
+          "date": "2026-04-25T11:30:00Z",
+          "type": "Bug Fix",
+          "repoArea": "Product",
+          "deliveryScore": 65,
+          "productScore": 70,
+          "leverageScore": 15,
+          "qualityScore": 85,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 3 files",
+            "95 lines changed",
+            "Bug fix in product area",
+            "3 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "tiina303",
+      "totalScore": 76,
+      "deliveryScore": 80,
+      "productScore": 35,
+      "leverageScore": 85,
+      "qualityScore": 75,
+      "confidence": "high",
+      "primaryImpactType": "Leverage",
+      "summary": "tiina303 shipped 9 merged PRs focused on backend infrastructure and reliability. Key contributions include batch export deadlock fix (#24903), ClickHouse migration for events table (#24800), and plugin server error handling (#24610). High leverage through platform-level improvements.",
+      "caveats": [
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24903",
+          "number": 24903,
+          "url": "https://github.com/PostHog/posthog/pull/24903",
+          "title": "fix: batch export deadlock on large event volumes",
+          "author": "tiina303",
+          "date": "2026-05-20T10:45:33Z",
+          "type": "Bug Fix",
+          "repoArea": "Backend",
+          "deliveryScore": 75,
+          "productScore": 30,
+          "leverageScore": 60,
+          "qualityScore": 80,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 5 files",
+            "145 lines changed",
+            "Reliability fix in backend",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24800",
+          "number": 24800,
+          "url": "https://github.com/PostHog/posthog/pull/24800",
+          "title": "chore: migrate events table to new ClickHouse schema",
+          "author": "tiina303",
+          "date": "2026-05-14T08:20:00Z",
+          "type": "Migration",
+          "repoArea": "Infrastructure",
+          "deliveryScore": 82,
+          "productScore": 10,
+          "leverageScore": 90,
+          "qualityScore": 70,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 12 files",
+            "520 lines changed",
+            "Infrastructure migration",
+            "Touches ClickHouse schema",
+            "4 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24610",
+          "number": 24610,
+          "url": "https://github.com/PostHog/posthog/pull/24610",
+          "title": "fix(plugin-server): improve error handling for webhook delivery",
+          "author": "tiina303",
+          "date": "2026-04-28T16:00:00Z",
+          "type": "Reliability",
+          "repoArea": "Infrastructure",
+          "deliveryScore": 68,
+          "productScore": 15,
+          "leverageScore": 80,
+          "qualityScore": 75,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 2 issue(s)",
+            "Meaningful scope: 7 files",
+            "280 lines changed",
+            "Reliability improvement",
+            "Infrastructure area",
+            "3 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "pauldambra",
+      "totalScore": 71,
+      "deliveryScore": 70,
+      "productScore": 80,
+      "leverageScore": 45,
+      "qualityScore": 70,
+      "confidence": "medium",
+      "primaryImpactType": "Product",
+      "summary": "pauldambra shipped 7 merged PRs with strong product proximity. Key contributions include session recording player redesign (#24870), onboarding flow improvements (#24730), and feature flag UI polish (#24550). Focused on customer-facing and product areas.",
+      "caveats": [
+        "Concentrated in product areas — leverage score may underrepresent cross-cutting impact.",
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24870",
+          "number": 24870,
+          "url": "https://github.com/PostHog/posthog/pull/24870",
+          "title": "feat(recordings): redesign session player controls",
+          "author": "pauldambra",
+          "date": "2026-05-17T13:00:00Z",
+          "type": "Product Feature",
+          "repoArea": "Frontend",
+          "deliveryScore": 80,
+          "productScore": 90,
+          "leverageScore": 25,
+          "qualityScore": 75,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 3 issue(s)",
+            "On milestone 0.62",
+            "Meaningful scope: 11 files",
+            "410 lines changed",
+            "Product feature in frontend",
+            "2 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24730",
+          "number": 24730,
+          "url": "https://github.com/PostHog/posthog/pull/24730",
+          "title": "feat(onboarding): streamline first event ingestion flow",
+          "author": "pauldambra",
+          "date": "2026-05-11T10:30:00Z",
+          "type": "Product Feature",
+          "repoArea": "Product",
+          "deliveryScore": 72,
+          "productScore": 85,
+          "leverageScore": 30,
+          "qualityScore": 70,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 7 files",
+            "265 lines changed",
+            "Product work type: Product Feature",
+            "Product area: Product",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24550",
+          "number": 24550,
+          "url": "https://github.com/PostHog/posthog/pull/24550",
+          "title": "fix(feature-flags): improve flag evaluation UI feedback",
+          "author": "pauldambra",
+          "date": "2026-04-22T09:45:00Z",
+          "type": "Bug Fix",
+          "repoArea": "Frontend",
+          "deliveryScore": 55,
+          "productScore": 70,
+          "leverageScore": 20,
+          "qualityScore": 65,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 4 files",
+            "120 lines changed",
+            "Bug fix in product area",
+            "2 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "liyiy",
+      "totalScore": 68,
+      "deliveryScore": 72,
+      "productScore": 30,
+      "leverageScore": 80,
+      "qualityScore": 65,
+      "confidence": "high",
+      "primaryImpactType": "Leverage",
+      "summary": "liyiy shipped 8 merged PRs primarily in CI/testing and developer experience. Key contributions include CI pipeline parallelization (#24860), test infrastructure shared fixtures (#24690), and flaky test detection (#24520). High leverage through developer productivity improvements.",
+      "caveats": [
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24860",
+          "number": 24860,
+          "url": "https://github.com/PostHog/posthog/pull/24860",
+          "title": "ci: parallelize frontend and backend test suites",
+          "author": "liyiy",
+          "date": "2026-05-16T11:00:00Z",
+          "type": "CI / Build",
+          "repoArea": "CI/testing",
+          "deliveryScore": 70,
+          "productScore": 5,
+          "leverageScore": 90,
+          "qualityScore": 65,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 8 files",
+            "310 lines changed",
+            "CI/Build work type",
+            "CI/testing area",
+            "Reduces CI time by 40%",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24690",
+          "number": 24690,
+          "url": "https://github.com/PostHog/posthog/pull/24690",
+          "title": "test: add shared fixtures for plugin server tests",
+          "author": "liyiy",
+          "date": "2026-05-08T14:30:00Z",
+          "type": "Test Infrastructure",
+          "repoArea": "CI/testing",
+          "deliveryScore": 60,
+          "productScore": 5,
+          "leverageScore": 85,
+          "qualityScore": 70,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 14 files",
+            "480 lines changed",
+            "Test infrastructure",
+            "Shared test fixtures for reuse",
+            "2 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24520",
+          "number": 24520,
+          "url": "https://github.com/PostHog/posthog/pull/24520",
+          "title": "ci: add flaky test detection and auto-retry",
+          "author": "liyiy",
+          "date": "2026-04-18T16:45:00Z",
+          "type": "Developer Experience",
+          "repoArea": "CI/testing",
+          "deliveryScore": 65,
+          "productScore": 5,
+          "leverageScore": 80,
+          "qualityScore": 60,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 6 files",
+            "220 lines changed",
+            "Developer experience improvement",
+            "CI/testing area",
+            "4 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24480",
+          "number": 24480,
+          "url": "https://github.com/PostHog/posthog/pull/24480",
+          "title": "refactor: extract common test helpers into shared module",
+          "author": "liyiy",
+          "date": "2026-04-15T10:00:00Z",
+          "type": "Refactor",
+          "repoArea": "CI/testing",
+          "deliveryScore": 50,
+          "productScore": 5,
+          "leverageScore": 75,
+          "qualityScore": 60,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 10 files",
+            "350 lines changed",
+            "Refactor for reuse",
+            "2 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "benjackwhite",
+      "totalScore": 65,
+      "deliveryScore": 75,
+      "productScore": 65,
+      "leverageScore": 40,
+      "qualityScore": 80,
+      "confidence": "medium",
+      "primaryImpactType": "Delivery",
+      "summary": "benjackwhite shipped 6 merged PRs across frontend and product areas. Key contributions include dashboard template system (#24840), experiment results visualization (#24700), and funnel conversion tooltip (#24590). Consistent delivery with strong review engagement.",
+      "caveats": [
+        "Concentrated in frontend — may underrepresent backend contributions.",
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24840",
+          "number": 24840,
+          "url": "https://github.com/PostHog/posthog/pull/24840",
+          "title": "feat(dashboards): add template system for common layouts",
+          "author": "benjackwhite",
+          "date": "2026-05-15T14:00:00Z",
+          "type": "Product Feature",
+          "repoArea": "Frontend",
+          "deliveryScore": 80,
+          "productScore": 75,
+          "leverageScore": 50,
+          "qualityScore": 85,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 2 issue(s)",
+            "On milestone 0.62",
+            "Meaningful scope: 9 files",
+            "380 lines changed",
+            "Product feature",
+            "Frontend area",
+            "Touches shared dashboard components",
+            "4 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24700",
+          "number": 24700,
+          "url": "https://github.com/PostHog/posthog/pull/24700",
+          "title": "feat(experiments): improve results visualization with confidence intervals",
+          "author": "benjackwhite",
+          "date": "2026-05-09T11:20:00Z",
+          "type": "Product Feature",
+          "repoArea": "Product",
+          "deliveryScore": 72,
+          "productScore": 80,
+          "leverageScore": 20,
+          "qualityScore": 80,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 5 files",
+            "195 lines changed",
+            "Product feature",
+            "Product area",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24590",
+          "number": 24590,
+          "url": "https://github.com/PostHog/posthog/pull/24590",
+          "title": "feat(funnels): add conversion rate tooltip with breakdown",
+          "author": "benjackwhite",
+          "date": "2026-04-26T09:00:00Z",
+          "type": "Product Feature",
+          "repoArea": "Frontend",
+          "deliveryScore": 60,
+          "productScore": 70,
+          "leverageScore": 15,
+          "qualityScore": 75,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 4 files",
+            "140 lines changed",
+            "Product feature in frontend",
+            "2 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "yakkomajuri",
+      "totalScore": 61,
+      "deliveryScore": 65,
+      "productScore": 20,
+      "leverageScore": 75,
+      "qualityScore": 70,
+      "confidence": "medium",
+      "primaryImpactType": "Leverage",
+      "summary": "yakkomajuri shipped 5 merged PRs focused on infrastructure and documentation. Key contributions include API rate limiting middleware (#24780), developer docs for plugin API (#24640), and infrastructure monitoring dashboards (#24510). Leveraged platform improvements benefiting multiple teams.",
+      "caveats": [
+        "Limited product-facing contributions in this period.",
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24780",
+          "number": 24780,
+          "url": "https://github.com/PostHog/posthog/pull/24780",
+          "title": "feat(api): add rate limiting middleware with configurable tiers",
+          "author": "yakkomajuri",
+          "date": "2026-05-13T10:00:00Z",
+          "type": "Security",
+          "repoArea": "Backend",
+          "deliveryScore": 75,
+          "productScore": 20,
+          "leverageScore": 85,
+          "qualityScore": 75,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 6 files",
+            "250 lines changed",
+            "Security improvement",
+            "Backend infrastructure",
+            "Touches shared middleware",
+            "4 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24640",
+          "number": 24640,
+          "url": "https://github.com/PostHog/posthog/pull/24640",
+          "title": "docs: add plugin API reference and migration guide",
+          "author": "yakkomajuri",
+          "date": "2026-05-01T15:30:00Z",
+          "type": "Documentation",
+          "repoArea": "Docs",
+          "deliveryScore": 45,
+          "productScore": 10,
+          "leverageScore": 70,
+          "qualityScore": 65,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 8 files",
+            "450 lines changed",
+            "Documentation",
+            "Docs area",
+            "2 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24510",
+          "number": 24510,
+          "url": "https://github.com/PostHog/posthog/pull/24510",
+          "title": "chore(infra): add Grafana dashboards for ingestion pipeline",
+          "author": "yakkomajuri",
+          "date": "2026-04-17T12:00:00Z",
+          "type": "Maintenance",
+          "repoArea": "Infrastructure",
+          "deliveryScore": 55,
+          "productScore": 5,
+          "leverageScore": 75,
+          "qualityScore": 60,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 5 files",
+            "180 lines changed",
+            "Infrastructure maintenance",
+            "3 reviews received"
+          ]
+        }
+      ]
+    },
+    {
+      "handle": "EDsCODE",
+      "totalScore": 55,
+      "deliveryScore": 60,
+      "productScore": 55,
+      "leverageScore": 35,
+      "qualityScore": 60,
+      "confidence": "medium",
+      "primaryImpactType": "Delivery",
+      "summary": "EDsCODE shipped 5 merged PRs across product and backend areas. Key contributions include billing usage breakdown (#24820), experiment variant management (#24660), and cohort selector improvements (#24530). Balanced delivery across product-facing features.",
+      "caveats": [
+        "Moderate evidence breadth — some dimensions have limited data.",
+        "Based on public GitHub activity only. Does not reflect mentoring, design discussions, incident response, planning, or private work."
+      ],
+      "topEvidence": [
+        {
+          "id": "pr-24820",
+          "number": 24820,
+          "url": "https://github.com/PostHog/posthog/pull/24820",
+          "title": "feat(billing): add usage breakdown by product",
+          "author": "EDsCODE",
+          "date": "2026-05-14T16:00:00Z",
+          "type": "Product Feature",
+          "repoArea": "Product",
+          "deliveryScore": 70,
+          "productScore": 75,
+          "leverageScore": 25,
+          "qualityScore": 65,
+          "confidence": "high",
+          "evidence": [
+            "Merged PR",
+            "Closes 1 issue(s)",
+            "Meaningful scope: 6 files",
+            "230 lines changed",
+            "Product feature",
+            "Product area",
+            "2 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24660",
+          "number": 24660,
+          "url": "https://github.com/PostHog/posthog/pull/24660",
+          "title": "feat(experiments): add variant management and allocation UI",
+          "author": "EDsCODE",
+          "date": "2026-05-04T13:15:00Z",
+          "type": "Product Feature",
+          "repoArea": "Frontend",
+          "deliveryScore": 65,
+          "productScore": 70,
+          "leverageScore": 20,
+          "qualityScore": 60,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 7 files",
+            "290 lines changed",
+            "Product feature in frontend",
+            "3 reviews received"
+          ]
+        },
+        {
+          "id": "pr-24530",
+          "number": 24530,
+          "url": "https://github.com/PostHog/posthog/pull/24530",
+          "title": "fix(cohorts): improve selector performance with large cohort lists",
+          "author": "EDsCODE",
+          "date": "2026-04-20T10:30:00Z",
+          "type": "Performance",
+          "repoArea": "Frontend",
+          "deliveryScore": 50,
+          "productScore": 40,
+          "leverageScore": 45,
+          "qualityScore": 55,
+          "confidence": "medium",
+          "evidence": [
+            "Merged PR",
+            "Meaningful scope: 3 files",
+            "95 lines changed",
+            "Performance fix",
+            "Frontend area",
+            "2 reviews received"
+          ]
+        }
+      ]
+    }
+  ]
+}
