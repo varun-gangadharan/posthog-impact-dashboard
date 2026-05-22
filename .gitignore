@@ -1,35 +1,37 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Generated analysis artifacts
+/data/
+/scripts/
+handoff.md
+validate-dashboard.mjs
+
+# Local environment
+.env
+.env.*
+!.env.example
+
 # Logs
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Environment and secrets
-.env
-.env.local
-.env.*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Editor and OS files
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+.idea/
 
-# Generated data (large intermediate pipeline files)
-data/raw-github.json
-data/normalized.json
-data/classified.json
-data/scored-engineers.json
+# Test and cache output
+coverage/
+.vite/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
+playwright-report/
+test-results/

@@ -1,98 +1,52 @@
 import type { EngineerScore } from "../types";
 
-type Props = {
+type EngineerDetailProps = {
   engineer: EngineerScore | null;
 };
 
-const DIMENSIONS = [
-  { key: "deliveryScore" as const, label: "Delivery", weight: "35%", desc: "Shipped, merged work with linked issues" },
-  { key: "productScore" as const, label: "Product", weight: "25%", desc: "Customer-facing feature and bug fix work" },
-  { key: "leverageScore" as const, label: "Leverage", weight: "25%", desc: "Platform, shared libs, cross-cutting impact" },
-  { key: "qualityScore" as const, label: "Quality", weight: "15%", desc: "Review depth, scope, revert absence" },
-];
-
-function confidenceExplanation(c: string): string {
-  if (c === "high") return "Multiple dimensions, 5+ contributions, strong evidence breadth.";
-  if (c === "medium") return "Some evidence across dimensions, but gaps remain.";
-  return "Limited contributions or narrow evidence — interpret with caution.";
-}
-
-export default function EngineerDetail({ engineer }: Props) {
+export default function EngineerDetail({ engineer }: EngineerDetailProps) {
   if (!engineer) {
     return (
-      <div className="engineer-detail empty">
-        <p>Select an engineer from the leaderboard to see details.</p>
+      <div className="engineer-detail">
+        <div className="detail-body empty-state">No engineer matches the current filters.</div>
       </div>
     );
   }
 
   return (
     <div className="engineer-detail">
-      <h2>Why @{engineer.handle} ranks here</h2>
-
-      <div className="score-summary">
-        <span className="total-score">{Math.round(engineer.totalScore)}<span className="total-score-max">/100</span></span>
-        <div className="confidence-block">
-          <span className="confidence-label">{engineer.confidence} confidence</span>
-          <span className="confidence-explanation">
-            {confidenceExplanation(engineer.confidence)}
-          </span>
+      <div className="panel-header">
+        <h2>@{engineer.handle}</h2>
+        <span className="score-pill">{engineer.totalScore}</span>
+      </div>
+      <div className="detail-body">
+        <div className="metric-grid">
+          <Metric label="Delivery" value={engineer.deliveryScore} />
+          <Metric label="Product" value={engineer.productScore} />
+          <Metric label="Leverage" value={engineer.leverageScore} />
+          <Metric label="Quality" value={engineer.qualityScore} />
         </div>
-      </div>
-
-      <div className="primary-impact">
-        Primary impact: <strong>{engineer.primaryImpactType}</strong>
-      </div>
-
-      <div className="score-breakdown" aria-label="Score breakdown">
-        <h3>Score Breakdown</h3>
-        <div className="breakdown-bars">
-          {DIMENSIONS.map((d) => (
-            <BreakdownBar
-              key={d.key}
-              label={`${d.label} (${d.weight})`}
-              value={engineer[d.key]}
-              description={d.desc}
-            />
-          ))}
+        <p className="summary">{engineer.summary}</p>
+        <div className="tag-list">
+          <span className="tag">{engineer.primaryImpactType}</span>
+          <span className="tag">{engineer.confidence} confidence</span>
+          <span className="tag">{engineer.topEvidence.length} evidence items</span>
         </div>
+        {engineer.caveats.length > 0 && (
+          <p className="summary">
+            <strong>Caveat:</strong> {engineer.caveats[0]}
+          </p>
+        )}
       </div>
-
-      <div className="explanation">
-        <p>{engineer.summary}</p>
-      </div>
-
-      {engineer.caveats.length > 0 && (
-        <div className="caveats">
-          <h4>Caveats</h4>
-          <ul>
-            {engineer.caveats.map((c, i) => (
-              <li key={i}>{c}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }
 
-function BreakdownBar({
-  label,
-  value,
-  description,
-}: {
-  label: string;
-  value: number;
-  description: string;
-}) {
-  const pct = Math.min(Math.max(value, 0), 100);
+function Metric({ label, value }: { label: string; value: number }) {
   return (
-    <div className="breakdown-row" title={description}>
-      <span className="breakdown-label">{label}</span>
-      <div className="breakdown-track" role="meter" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} aria-label={label}>
-        <div className="breakdown-fill" style={{ width: `${pct}%` }} />
-      </div>
-      <span className="breakdown-value">{Math.round(value)}</span>
+    <div className="metric">
+      <span>{label}</span>
+      <strong>{value}</strong>
     </div>
   );
 }

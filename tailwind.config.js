@@ -5,21 +5,13 @@ export default {
     extend: {
       colors: {
         navy: {
-          950: "#0a0e1a",
-          900: "#0f1629",
-          800: "#151d35",
-          700: "#1e2a4a",
-          600: "#2a3a5c",
+          700: "#334155",
+          800: "#1e293b",
+          900: "#0f172a",
+          950: "#020617",
         },
-        "indigo-accent": "#6366f1",
-        "violet-accent": "#8b5cf6",
+        "indigo-accent": "#818cf8",
         "emerald-signal": "#34d399",
-        "amber-signal": "#fbbf24",
-        "rose-signal": "#f87171",
-      },
-      fontFamily: {
-        sans: ["Inter", "DM Sans", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "ui-monospace", "monospace"],
       },
     },
   },

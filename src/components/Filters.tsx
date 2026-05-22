@@ -1,50 +1,22 @@
-type Props = {
-  repoArea: string;
-  onRepoAreaChange: (area: string) => void;
-  workType: string;
-  onWorkTypeChange: (type: string) => void;
-  timeWindow: string;
-  onTimeWindowChange: (window: string) => void;
-};
-
-const AREA_OPTIONS = [
-  "All",
-  "Product",
-  "Frontend",
-  "Backend",
-  "Infrastructure",
-  "CI/testing",
-  "Docs",
-  "Other",
-] as const;
-
-const TYPE_OPTIONS = [
-  "All",
-  "Product Feature",
-  "Bug Fix",
-  "Reliability",
-  "Developer Experience",
-  "Test Infrastructure",
-  "CI / Build",
-  "Migration",
-  "Refactor",
-  "Documentation",
-  "Experiment",
-  "Maintenance",
-  "Security",
-  "Performance",
-] as const;
-
-const TIME_WINDOW_OPTIONS = [
+const repoAreas = ["All", "Product", "Infrastructure", "Data", "Developer Experience", "Unknown"];
+const workTypes = ["All", "Feature", "Bug Fix", "Refactor", "Maintenance", "Testing", "Documentation"];
+const windows = [
   { value: "all", label: "All time" },
-  { value: "1h", label: "Past hour" },
-  { value: "1d", label: "Past day" },
-  { value: "1w", label: "Past week" },
-  { value: "1m", label: "Past month" },
-  { value: "3m", label: "Past 3 months" },
-] as const;
+  { value: "1h", label: "Last hour" },
+  { value: "1d", label: "Last day" },
+  { value: "1w", label: "Last week" },
+  { value: "1m", label: "Last month" },
+  { value: "3m", label: "Last 3 months" },
+];
 
-const VALID_WINDOWS = new Set<string>(TIME_WINDOW_OPTIONS.map((o) => o.value));
+type FiltersProps = {
+  repoArea: string;
+  onRepoAreaChange: (value: string) => void;
+  workType: string;
+  onWorkTypeChange: (value: string) => void;
+  timeWindow: string;
+  onTimeWindowChange: (value: string) => void;
+};
 
 export default function Filters({
   repoArea,
@@ -53,65 +25,39 @@ export default function Filters({
   onWorkTypeChange,
   timeWindow,
   onTimeWindowChange,
-}: Props) {
+}: FiltersProps) {
   return (
-    <div className="filters" role="group" aria-label="Dashboard filters">
-      <label>
-        Time window
-        <select
-          value={timeWindow}
-          onChange={(e) => {
-            const val = e.target.value;
-            if (VALID_WINDOWS.has(val)) {
-              onTimeWindowChange(val);
-            }
-          }}
-        >
-          {TIME_WINDOW_OPTIONS.map((o) => (
-            <option key={o.value} value={o.value}>
-              {o.label}
+    <div className="filters-panel" aria-label="Dashboard filters">
+      <div className="filter-field">
+        <label htmlFor="repo-area">Repo area</label>
+        <select id="repo-area" value={repoArea} onChange={(e) => onRepoAreaChange(e.target.value)}>
+          {repoAreas.map((area) => (
+            <option key={area} value={area}>
+              {area}
             </option>
           ))}
         </select>
-      </label>
-
-      <label>
-        Repo area
-        <select
-          value={repoArea}
-          onChange={(e) => {
-            const val = e.target.value;
-            if ((AREA_OPTIONS as readonly string[]).includes(val)) {
-              onRepoAreaChange(val);
-            }
-          }}
-        >
-          {AREA_OPTIONS.map((a) => (
-            <option key={a} value={a}>
-              {a}
+      </div>
+      <div className="filter-field">
+        <label htmlFor="work-type">Work type</label>
+        <select id="work-type" value={workType} onChange={(e) => onWorkTypeChange(e.target.value)}>
+          {workTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
             </option>
           ))}
         </select>
-      </label>
-
-      <label>
-        Work type
-        <select
-          value={workType}
-          onChange={(e) => {
-            const val = e.target.value;
-            if ((TYPE_OPTIONS as readonly string[]).includes(val)) {
-              onWorkTypeChange(val);
-            }
-          }}
-        >
-          {TYPE_OPTIONS.map((t) => (
-            <option key={t} value={t}>
-              {t}
+      </div>
+      <div className="filter-field">
+        <label htmlFor="time-window">Time window</label>
+        <select id="time-window" value={timeWindow} onChange={(e) => onTimeWindowChange(e.target.value)}>
+          {windows.map((window) => (
+            <option key={window.value} value={window.value}>
+              {window.label}
             </option>
           ))}
         </select>
-      </label>
+      </div>
     </div>
   );
 }

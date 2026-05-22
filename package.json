@@ -3,48 +3,35 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "engines": {
-    "node": ">=20.5.0"
-  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "fetch:data": "tsx scripts/fetch-github-data.ts",
-    "fetch:fast": "tsx scripts/fetch-github-fast.ts",
-    "inspect:data": "tsx scripts/inspect-data.ts",
-    "classify:data": "tsx scripts/classify-work.ts",
-    "score:data": "tsx scripts/score-engineers.ts",
-    "normalize:data": "tsx scripts/normalize-data.ts",
-    "test:classify": "tsx scripts/test-classification.ts",
-    "test:score": "tsx scripts/test-scoring.ts",
-    "test:pipeline": "tsx scripts/test-classification.ts && tsx scripts/test-scoring.ts"
+    "score": "tsx scripts/score-engineers.ts",
+    "test:scoring": "tsx scripts/test-scoring.ts",
+    "test:classification": "tsx scripts/test-classification.ts"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",
     "motion": "^12.40.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "recharts": "^3.8.1"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@types/node": "^25.9.1",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.3",
+    "@types/react": "^18.3.27",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.5.0",
-    "eslint": "^9.13.0",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "eslint-plugin-react-refresh": "^0.4.14",
-    "globals": "^15.11.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.26",
     "playwright": "^1.60.0",
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19",
     "tsx": "^4.22.3",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.11.0",
-    "vite": "^5.4.10"
+    "typescript": "^5.6.3",
+    "typescript-eslint": "^8.59.4",
+    "vite": "^5.4.21"
   }
 }

@@ -1,70 +1,37 @@
 import type { EngineerScore } from "../types";
 
-type Props = {
+type LeaderboardProps = {
   engineers: EngineerScore[];
   selectedHandle: string | null;
   onSelect: (handle: string) => void;
 };
 
-function confidenceBadgeColor(c: string): string {
-  if (c === "high") return "#22c55e";
-  if (c === "medium") return "#eab308";
-  return "#ef4444";
-}
-
-const MAX_DISPLAY = 20;
-
-export default function Leaderboard({
-  engineers,
-  selectedHandle,
-  onSelect,
-}: Props) {
-  if (engineers.length === 0) {
-    return (
-      <div className="leaderboard leaderboard-empty">
-        <h2>Engineers by Impact</h2>
-        <p>No engineers match the current filters. Try broadening your selection.</p>
-      </div>
-    );
-  }
-
-  const displayed = engineers.slice(0, MAX_DISPLAY);
-
+export default function Leaderboard({ engineers, selectedHandle, onSelect }: LeaderboardProps) {
   return (
     <div className="leaderboard">
-      <h2>Top {displayed.length} Engineers by Impact</h2>
-      <p className="score-explainer">
-        Scores are 0–100, combining Delivery (35%), Product (25%), Leverage (25%), and Quality (15%) signals from public GitHub activity.
-      </p>
-      <ol role="listbox" aria-label="Engineer rankings" className="leaderboard-list">
-        {displayed.map((eng, i) => (
-          <li
-            key={eng.handle}
-            className={`leaderboard-row ${selectedHandle === eng.handle ? "selected" : ""}`}
-            onClick={() => onSelect(eng.handle)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                onSelect(eng.handle);
-              }
-            }}
-            tabIndex={0}
-            role="option"
-            aria-selected={selectedHandle === eng.handle}
+      <div className="panel-header">
+        <h2>Engineer Leaderboard</h2>
+        <span className="meta-line">Top 20</span>
+      </div>
+      <div className="leaderboard-list">
+        {engineers.slice(0, 20).map((engineer, index) => (
+          <button
+            key={engineer.handle}
+            className={`leaderboard-row ${engineer.handle === selectedHandle ? "is-selected" : ""}`}
+            onClick={() => onSelect(engineer.handle)}
+            type="button"
           >
-            <span className="rank">#{i + 1}</span>
-            <span className="handle">@{eng.handle}</span>
-            <span className="score">{Math.round(eng.totalScore)}<span className="score-max">/100</span></span>
-            <span
-              className="confidence"
-              style={{ color: confidenceBadgeColor(eng.confidence) }}
-            >
-              {eng.confidence}
+            <span className="rank">#{index + 1}</span>
+            <span>
+              <span className="handle">@{engineer.handle}</span>
+              <span className="meta-line">
+                {engineer.primaryImpactType} impact · {engineer.confidence} confidence
+              </span>
             </span>
-            <span className="impact-type">{eng.primaryImpactType}</span>
-          </li>
+            <span className="score-pill">{engineer.totalScore}</span>
+          </button>
         ))}
-      </ol>
+      </div>
     </div>
   );
 }
