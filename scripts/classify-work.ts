@@ -64,6 +64,15 @@ const LABEL_REPO_AREA_RULES: Array<{
   { pattern: /^surveys?$/i, repoArea: "Product", signal: "label" },
   { pattern: /^web[\s_-]?analytics/i, repoArea: "Product", signal: "label" },
   { pattern: /^data[\s_-]?warehouse/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/product/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/growth/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/llm/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/session/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/web/i, repoArea: "Product", signal: "label" },
+  { pattern: /^team\/pipeline/i, repoArea: "Backend", signal: "label" },
+  { pattern: /^team\/infrastructure/i, repoArea: "Infrastructure", signal: "label" },
+  { pattern: /^team\/frontend/i, repoArea: "Frontend", signal: "label" },
+  { pattern: /^llm[\s_-]?analytics/i, repoArea: "Product", signal: "label" },
 ];
 
 // --- File path rules ---
@@ -188,6 +197,52 @@ const TITLE_KEYWORD_RULES: KeywordRule[] = [
   { pattern: /\bsurvey/i, repoArea: "Product", signal: "title-keyword" },
   { pattern: /\bweb[\s_-]?analytics/i, repoArea: "Product", signal: "title-keyword" },
   { pattern: /\bdata[\s_-]?warehouse/i, repoArea: "Product", signal: "title-keyword" },
+
+  // Scope-based area detection (conventional commit scopes)
+  { pattern: /\(backend\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(api\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(hogql\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(clickhouse\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(queries?\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(batch[-_]?exports?\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(celery\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(warehouse\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(django\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(models?\)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\(frontend\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(scenes?\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(ui\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(components?\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(lemon-ui\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(hooks?\)/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\(infra\)/i, repoArea: "Infrastructure", signal: "title-keyword" },
+  { pattern: /\(deploy\)/i, repoArea: "Infrastructure", signal: "title-keyword" },
+  { pattern: /\(docker\)/i, repoArea: "Infrastructure", signal: "title-keyword" },
+  { pattern: /\(ci\)/i, repoArea: "CI/testing", signal: "title-keyword" },
+  { pattern: /\(tests?\)/i, repoArea: "CI/testing", signal: "title-keyword" },
+  { pattern: /\(playwright\)/i, repoArea: "CI/testing", signal: "title-keyword" },
+  { pattern: /\(docs?\)/i, repoArea: "Docs", workType: "Documentation", signal: "title-keyword" },
+
+  // Backend keyword signals
+  { pattern: /\bhogql\b/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bclickhouse\b/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bcelery\b/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bdjango\b/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bplugin[\s-]?server\b/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bbatch[\s_-]?export/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bapi\s+(endpoint|route)/i, repoArea: "Backend", signal: "title-keyword" },
+  { pattern: /\bquery\s+(runner|engine|executor)/i, repoArea: "Backend", signal: "title-keyword" },
+
+  // Frontend keyword signals
+  { pattern: /\blemon[\s-]?ui\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\breact\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bcomponent/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bscene/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bmodal\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bsidebar\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\btooltip\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bcss\b/i, repoArea: "Frontend", signal: "title-keyword" },
+  { pattern: /\bstyle/i, repoArea: "Frontend", signal: "title-keyword" },
 
   // Infrastructure/DevEx keywords
   { pattern: /\bmigrat/i, workType: "Migration", signal: "title-keyword" },

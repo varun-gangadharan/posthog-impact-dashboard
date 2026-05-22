@@ -66,6 +66,9 @@ function main() {
       (n: number) => issueMap.has(n)
     );
 
+    const hasPerFileData = Array.isArray(pr.changedFiles) && pr.changedFiles.length > 0 &&
+      typeof pr.changedFiles[0] === "object" && "filename" in pr.changedFiles[0];
+
     contributions.push({
       id: `pr-${pr.number}`,
       number: pr.number,
@@ -80,17 +83,19 @@ function main() {
       closedAt: pr.closedAt ?? null,
       labels: pr.labels ?? [],
       milestone: pr.milestone ?? null,
-      changedFiles: (pr.changedFiles ?? []).map(
-        (f: { filename: string }) => f.filename
-      ),
-      additions: (pr.changedFiles ?? []).reduce(
-        (sum: number, f: { additions: number }) => sum + (f.additions ?? 0),
-        0
-      ),
-      deletions: (pr.changedFiles ?? []).reduce(
-        (sum: number, f: { deletions: number }) => sum + (f.deletions ?? 0),
-        0
-      ),
+      changedFiles: hasPerFileData
+        ? (pr.changedFiles as Array<{ filename: string }>).map((f) => f.filename)
+        : [],
+      additions: hasPerFileData
+        ? (pr.changedFiles as Array<{ additions: number }>).reduce(
+            (sum: number, f) => sum + (f.additions ?? 0), 0
+          )
+        : (pr.additions ?? 0),
+      deletions: hasPerFileData
+        ? (pr.changedFiles as Array<{ deletions: number }>).reduce(
+            (sum: number, f) => sum + (f.deletions ?? 0), 0
+          )
+        : (pr.deletions ?? 0),
       reviewCount: (pr.reviews ?? []).length,
       reviewers: Array.from(
         new Set<string>(

@@ -28,7 +28,7 @@ const LARGE_PR_CAP_FACTOR = 0.6;
 const REVIEW_IMPACT_FACTOR = 0.3;
 const REVERT_QUALITY_PENALTY = 0.5;
 const MAX_CONTRIBUTIONS_FOR_SCORE = 50;
-const TOP_EVIDENCE_COUNT = 5;
+const TOP_EVIDENCE_COUNT = 10;
 
 // Work types that count as product-proximate
 const PRODUCT_WORK_TYPES: Set<WorkType> = new Set([
@@ -108,6 +108,9 @@ export function scoreContribution(c: ClassifiedContribution): ContributionScore 
     } else {
       evidence.push(`${totalChanges} lines changed`);
     }
+  } else if (totalChanges === 0 && c.type === "pull_request" && c.mergedAt) {
+    deliveryRaw += 8;
+    evidence.push("Merged PR (size data unavailable)");
   }
 
   // Issues get less delivery score (they represent requests, not shipped work)
@@ -208,6 +211,8 @@ export function scoreContribution(c: ClassifiedContribution): ContributionScore 
   // Reasonable scope (not too tiny, not too huge)
   if (totalChanges >= 10 && totalChanges <= 800) {
     qualityRaw += 10;
+  } else if (totalChanges === 0 && c.type === "pull_request" && c.mergedAt) {
+    qualityRaw += 5;
   }
 
   // Normalize each dimension to 0-100
@@ -321,7 +326,7 @@ export function scoreEngineers(
     const avgQuality = totalQuality / weightSum;
 
     // Breadth bonus: having more quality contributions is a secondary signal
-    const breadthBonus = Math.min(10, Math.log2(topContributions.length + 1) * 4);
+    const breadthBonus = Math.min(20, Math.log2(topContributions.length + 1) * 5);
 
     const rawTotal =
       avgDelivery * WEIGHTS.delivery +

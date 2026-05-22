@@ -28,5 +28,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Generated data (may contain large API responses)
+# Generated data (large intermediate pipeline files)
 data/raw-github.json
+data/normalized.json

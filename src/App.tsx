@@ -20,17 +20,34 @@ function sanitizeEvidence(ev: ContributionScore): ContributionScore {
   };
 }
 
+function getTimeWindowCutoff(window: string): Date | null {
+  if (window === "all") return null;
+  const now = new Date();
+  switch (window) {
+    case "1h": return new Date(now.getTime() - 60 * 60 * 1000);
+    case "1d": return new Date(now.getTime() - 24 * 60 * 60 * 1000);
+    case "1w": return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    case "1m": return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    case "3m": return new Date(now.getTime() - 90 * 24 * 60 * 60 * 1000);
+    default: return null;
+  }
+}
+
 function filterEngineers(
   engineers: EngineerScore[],
   repoArea: string,
-  workType: string
+  workType: string,
+  timeWindow: string
 ): EngineerScore[] {
+  const cutoff = getTimeWindowCutoff(timeWindow);
+
   return engineers
     .map((eng) => {
       const filtered = eng.topEvidence.filter((ev) => {
         const areaMatch = repoArea === "All" || ev.repoArea === repoArea;
         const typeMatch = workType === "All" || ev.type === workType;
-        return areaMatch && typeMatch;
+        const timeMatch = !cutoff || new Date(ev.date) >= cutoff;
+        return areaMatch && typeMatch && timeMatch;
       });
       if (filtered.length === 0) return null;
 
@@ -62,6 +79,7 @@ export default function App() {
   const [selectedHandle, setSelectedHandle] = useState<string | null>(null);
   const [repoArea, setRepoArea] = useState("All");
   const [workType, setWorkType] = useState("All");
+  const [timeWindow, setTimeWindow] = useState("all");
 
   useEffect(() => {
     fetch("/data/scored-engineers.json")
@@ -81,14 +99,15 @@ export default function App() {
 
   const filtered = useMemo(() => {
     if (!data) return [];
-    if (repoArea === "All" && workType === "All") {
+    const isDefault = repoArea === "All" && workType === "All" && timeWindow === "all";
+    if (isDefault) {
       return data.engineers.map((eng) => ({
         ...eng,
         topEvidence: eng.topEvidence.map(sanitizeEvidence),
       }));
     }
-    return filterEngineers(data.engineers, repoArea, workType);
-  }, [data, repoArea, workType]);
+    return filterEngineers(data.engineers, repoArea, workType, timeWindow);
+  }, [data, repoArea, workType, timeWindow]);
 
   const selectedEngineer: EngineerScore | null =
     filtered.find((e) => e.handle === selectedHandle) ?? null;
@@ -106,7 +125,7 @@ export default function App() {
       <header className="dashboard-header">
         <h1>PostHog Engineer Impact Dashboard</h1>
         <p className="subtitle">
-          Top 5 most impactful engineers in{" "}
+          Top most impactful engineers in{" "}
           <a
             href="https://github.com/PostHog/posthog"
             target="_blank"
@@ -128,6 +147,8 @@ export default function App() {
         onRepoAreaChange={setRepoArea}
         workType={workType}
         onWorkTypeChange={setWorkType}
+        timeWindow={timeWindow}
+        onTimeWindowChange={setTimeWindow}
       />
 
       {error && (
@@ -144,6 +165,9 @@ export default function App() {
 
       {!loading && !error && (
         <>
+          <div className="results-count">
+            Showing {Math.min(filtered.length, 20)} of {filtered.length} engineers
+          </div>
           <main className="dashboard-main">
             <section aria-label="Leaderboard">
               <Leaderboard
@@ -171,7 +195,7 @@ export default function App() {
         <footer className="dashboard-footer">
           Data generated:{" "}
           {new Date(data.generatedAt).toLocaleDateString()} | Window:{" "}
-          {data.timeWindowDays} days
+          {data.timeWindowDays} days | {data.engineers.length} engineers scored
         </footer>
       )}
     </div>

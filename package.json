@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fetch:data": "tsx scripts/fetch-github-data.ts",
+    "fetch:fast": "tsx scripts/fetch-github-fast.ts",
     "inspect:data": "tsx scripts/inspect-data.ts",
     "classify:data": "tsx scripts/classify-work.ts",
     "score:data": "tsx scripts/score-engineers.ts",

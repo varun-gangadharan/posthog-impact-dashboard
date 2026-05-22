@@ -3,6 +3,8 @@ type Props = {
   onRepoAreaChange: (area: string) => void;
   workType: string;
   onWorkTypeChange: (type: string) => void;
+  timeWindow: string;
+  onTimeWindowChange: (window: string) => void;
 };
 
 const AREA_OPTIONS = [
@@ -33,14 +35,46 @@ const TYPE_OPTIONS = [
   "Performance",
 ] as const;
 
+const TIME_WINDOW_OPTIONS = [
+  { value: "all", label: "All time" },
+  { value: "1h", label: "Past hour" },
+  { value: "1d", label: "Past day" },
+  { value: "1w", label: "Past week" },
+  { value: "1m", label: "Past month" },
+  { value: "3m", label: "Past 3 months" },
+] as const;
+
+const VALID_WINDOWS = new Set<string>(TIME_WINDOW_OPTIONS.map((o) => o.value));
+
 export default function Filters({
   repoArea,
   onRepoAreaChange,
   workType,
   onWorkTypeChange,
+  timeWindow,
+  onTimeWindowChange,
 }: Props) {
   return (
     <div className="filters" role="group" aria-label="Dashboard filters">
+      <label>
+        Time window
+        <select
+          value={timeWindow}
+          onChange={(e) => {
+            const val = e.target.value;
+            if (VALID_WINDOWS.has(val)) {
+              onTimeWindowChange(val);
+            }
+          }}
+        >
+          {TIME_WINDOW_OPTIONS.map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <label>
         Repo area
         <select

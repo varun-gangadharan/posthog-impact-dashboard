@@ -12,6 +12,8 @@ function confidenceBadgeColor(c: string): string {
   return "#ef4444";
 }
 
+const MAX_DISPLAY = 20;
+
 export default function Leaderboard({
   engineers,
   selectedHandle,
@@ -20,17 +22,19 @@ export default function Leaderboard({
   if (engineers.length === 0) {
     return (
       <div className="leaderboard leaderboard-empty">
-        <h2>Top 5 Engineers by Impact</h2>
+        <h2>Engineers by Impact</h2>
         <p>No engineers match the current filters. Try broadening your selection.</p>
       </div>
     );
   }
 
+  const displayed = engineers.slice(0, MAX_DISPLAY);
+
   return (
     <div className="leaderboard">
-      <h2>Top 5 Engineers by Impact</h2>
-      <ol role="listbox" aria-label="Engineer rankings">
-        {engineers.slice(0, 5).map((eng, i) => (
+      <h2>Top {displayed.length} Engineers by Impact</h2>
+      <ol role="listbox" aria-label="Engineer rankings" className="leaderboard-list">
+        {displayed.map((eng, i) => (
           <li
             key={eng.handle}
             className={`leaderboard-row ${selectedHandle === eng.handle ? "selected" : ""}`}
