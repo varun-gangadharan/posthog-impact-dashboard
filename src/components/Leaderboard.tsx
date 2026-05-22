@@ -33,6 +33,9 @@ export default function Leaderboard({
   return (
     <div className="leaderboard">
       <h2>Top {displayed.length} Engineers by Impact</h2>
+      <p className="score-explainer">
+        Scores are 0–100, combining Delivery (35%), Product (25%), Leverage (25%), and Quality (15%) signals from public GitHub activity.
+      </p>
       <ol role="listbox" aria-label="Engineer rankings" className="leaderboard-list">
         {displayed.map((eng, i) => (
           <li
@@ -51,7 +54,7 @@ export default function Leaderboard({
           >
             <span className="rank">#{i + 1}</span>
             <span className="handle">@{eng.handle}</span>
-            <span className="score">{Math.round(eng.totalScore)}</span>
+            <span className="score">{Math.round(eng.totalScore)}<span className="score-max">/100</span></span>
             <span
               className="confidence"
               style={{ color: confidenceBadgeColor(eng.confidence) }}

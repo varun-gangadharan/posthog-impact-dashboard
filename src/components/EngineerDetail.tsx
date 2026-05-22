@@ -31,7 +31,7 @@ export default function EngineerDetail({ engineer }: Props) {
       <h2>Why @{engineer.handle} ranks here</h2>
 
       <div className="score-summary">
-        <span className="total-score">{Math.round(engineer.totalScore)}</span>
+        <span className="total-score">{Math.round(engineer.totalScore)}<span className="total-score-max">/100</span></span>
         <div className="confidence-block">
           <span className="confidence-label">{engineer.confidence} confidence</span>
           <span className="confidence-explanation">

@@ -99,8 +99,22 @@
 
 .leaderboard h2 {
   font-size: 1.1rem;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.25rem;
   color: #f1f5f9;
+}
+
+.score-explainer {
+  font-size: 0.75rem;
+  color: #475569;
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+.score-max {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #475569;
 }
 
 .leaderboard-list {
@@ -201,6 +215,12 @@
   font-weight: 700;
   line-height: 1;
   color: #f1f5f9;
+}
+
+.total-score-max {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #475569;
 }
 
 .confidence-block {
