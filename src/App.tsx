@@ -5,6 +5,16 @@ import EngineerDetail from "./components/EngineerDetail";
 import EvidenceTable from "./components/EvidenceTable";
 import Filters from "./components/Filters";
 import Methodology from "./components/Methodology";
+import DashboardHeader from "./components/dora/DashboardHeader";
+import DoraCards from "./components/dora/DoraCards";
+import DeploymentChart from "./components/dora/DeploymentChart";
+import LeadTimeDistribution from "./components/dora/LeadTimeDistribution";
+import FailureRateMTTR from "./components/dora/FailureRateMTTR";
+import TeamVelocity from "./components/dora/TeamVelocity";
+import CodeQuality from "./components/dora/CodeQuality";
+import ThreadBackground from "./components/dora/ThreadBackground";
+import SectionDivider from "./components/dora/SectionDivider";
+import AnimatedPanel from "./components/dora/AnimatedPanel";
 import "./App.css";
 
 const GITHUB_URL_RE = /^https:\/\/github\.com\/PostHog\/posthog\/(pull|issues)\/\d+$/;
@@ -80,6 +90,7 @@ export default function App() {
   const [repoArea, setRepoArea] = useState("All");
   const [workType, setWorkType] = useState("All");
   const [timeWindow, setTimeWindow] = useState("all");
+  const [environment, setEnvironment] = useState("Production");
 
   useEffect(() => {
     fetch("/data/scored-engineers.json")
@@ -121,83 +132,118 @@ export default function App() {
   }, [filtered, selectedHandle]);
 
   return (
-    <div className="dashboard">
-      <header className="dashboard-header">
-        <h1>PostHog Engineer Impact Dashboard</h1>
-        <p className="subtitle">
-          Top most impactful engineers in{" "}
-          <a
-            href="https://github.com/PostHog/posthog"
-            target="_blank"
-            rel="noreferrer"
-          >
-            PostHog/posthog
-          </a>{" "}
-          based on public GitHub activity
-        </p>
-        <div className="caution-label" role="status" aria-label="Caution">
-          This is an impact heuristic, not a performance review tool. Scores
-          reflect public GitHub signals only and should be a starting point for
-          investigation, not a final judgment.
-        </div>
-      </header>
+    <div className="relative min-h-screen">
+      <ThreadBackground />
 
-      <Filters
-        repoArea={repoArea}
-        onRepoAreaChange={setRepoArea}
-        workType={workType}
-        onWorkTypeChange={setWorkType}
-        timeWindow={timeWindow}
-        onTimeWindowChange={setTimeWindow}
-      />
+      <div className="relative z-10 mx-auto max-w-[1440px] px-6 py-6">
+        <DashboardHeader
+          environment={environment}
+          onEnvironmentChange={setEnvironment}
+        />
 
-      {error && (
-        <div className="error-banner" role="alert">
-          {error}
-        </div>
-      )}
+        <DoraCards />
 
-      {loading && (
-        <div className="loading-state" role="status" aria-label="Loading">
-          <p>Loading engineer data…</p>
-        </div>
-      )}
-
-      {!loading && !error && (
-        <>
-          <div className="results-count">
-            Showing {Math.min(filtered.length, 20)} of {filtered.length} engineers
+        <AnimatedPanel delay={0.3}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            <DeploymentChart />
+            <LeadTimeDistribution />
           </div>
-          <main className="dashboard-main">
-            <section aria-label="Leaderboard">
-              <Leaderboard
-                engineers={filtered}
-                selectedHandle={selectedHandle}
-                onSelect={setSelectedHandle}
-              />
-            </section>
-            <section aria-label="Engineer detail">
-              <EngineerDetail engineer={selectedEngineer} />
-            </section>
-          </main>
+        </AnimatedPanel>
 
-          {selectedEngineer && (
-            <section className="evidence-section" aria-label="Evidence">
-              <EvidenceTable evidence={selectedEngineer.topEvidence} />
-            </section>
+        <AnimatedPanel delay={0.45}>
+          <FailureRateMTTR />
+        </AnimatedPanel>
+
+        <AnimatedPanel delay={0.6}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            <TeamVelocity />
+            <CodeQuality />
+          </div>
+        </AnimatedPanel>
+
+        <SectionDivider label="Engineer Impact" sublabel="Individual contribution analysis" />
+
+        <AnimatedPanel delay={0.75}>
+        <div className="dashboard rounded-xl border border-navy-700 bg-navy-900/80 p-6">
+          <header className="dashboard-header">
+            <h1>PostHog Engineer Impact Dashboard</h1>
+            <p className="subtitle">
+              Top most impactful engineers in{" "}
+              <a
+                href="https://github.com/PostHog/posthog"
+                target="_blank"
+                rel="noreferrer"
+              >
+                PostHog/posthog
+              </a>{" "}
+              based on public GitHub activity
+            </p>
+            <div className="caution-label" role="status" aria-label="Caution">
+              This is an impact heuristic, not a performance review tool. Scores
+              reflect public GitHub signals only and should be a starting point for
+              investigation, not a final judgment.
+            </div>
+          </header>
+
+          <Filters
+            repoArea={repoArea}
+            onRepoAreaChange={setRepoArea}
+            workType={workType}
+            onWorkTypeChange={setWorkType}
+            timeWindow={timeWindow}
+            onTimeWindowChange={setTimeWindow}
+          />
+
+          {error && (
+            <div className="error-banner" role="alert">
+              {error}
+            </div>
           )}
-        </>
-      )}
 
-      <Methodology />
+          {loading && (
+            <div className="loading-state" role="status" aria-label="Loading">
+              <p>Loading engineer data...</p>
+            </div>
+          )}
 
-      {data && (
-        <footer className="dashboard-footer">
-          Data generated:{" "}
-          {new Date(data.generatedAt).toLocaleDateString()} | Window:{" "}
-          {data.timeWindowDays} days | {data.engineers.length} engineers scored
-        </footer>
-      )}
+          {!loading && !error && (
+            <>
+              <div className="results-count">
+                Showing {Math.min(filtered.length, 20)} of {filtered.length} engineers
+              </div>
+              <main className="dashboard-main">
+                <section aria-label="Leaderboard">
+                  <Leaderboard
+                    engineers={filtered}
+                    selectedHandle={selectedHandle}
+                    onSelect={setSelectedHandle}
+                  />
+                </section>
+                <section aria-label="Engineer detail">
+                  <EngineerDetail engineer={selectedEngineer} />
+                </section>
+              </main>
+
+              {selectedEngineer && (
+                <section className="evidence-section" aria-label="Evidence">
+                  <EvidenceTable evidence={selectedEngineer.topEvidence} />
+                </section>
+              )}
+            </>
+          )}
+
+          <Methodology />
+
+          {data && (
+            <footer className="dashboard-footer">
+              Data generated:{" "}
+              {new Date(data.generatedAt).toLocaleDateString()} | Window:{" "}
+              {data.timeWindowDays} days | {data.engineers.length} engineers scored
+            </footer>
+          )}
+        </div>
+        </AnimatedPanel>
+      </div>
     </div>
   );
 }
